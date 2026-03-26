@@ -1,0 +1,8 @@
+# .gitignore
+.netrwhist
+undo/
+spell/
+lazy-lock.json
+# We don't backup the 'lua-rocks' or 'lazy' folders because 
+# Lazy.nvim will reinstall them automatically on the new device.
+lua/.repro
