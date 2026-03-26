@@ -19,9 +19,8 @@ vim.keymap.set('n', '<leader>fh', function()
 		depth = 2,
 	})
 end, { desc = 'Telescope find files' })
-
 vim.keymap.set('n', '<leader>fs', function()
-	require('telescope.builtin').grep_string({ search = vim.fn.input("Grep > ") });
+    require('telescope.builtin').live_grep()
 end)
 
 vim.keymap.set("n", "<leader>nf", function()
