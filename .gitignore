@@ -1,8 +1,22 @@
-# .gitignore
+# --- Temp Files ---
+*.swp
+*.swo
 .netrwhist
 undo/
 spell/
+shada/
+
+# --- Plugin Manager (Lazy.nvim) ---
+# We don't backup the plugins themselves, only the 'lazy-lock.json' 
+# which tells the other computer exactly which versions to install.
 lazy-lock.json
-# We don't backup the 'lua-rocks' or 'lazy' folders because 
-# Lazy.nvim will reinstall them automatically on the new device.
-lua/.repro
+
+# --- Data & Cache ---
+# These folders contain the actual compiled plugins and state
+# which are unique to each machine's architecture.
+/lua/.repro
+/plugin/
+/vendor/
+
+# --- Logs ---
+*.log
