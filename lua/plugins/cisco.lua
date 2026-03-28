@@ -1,0 +1,5 @@
+return {
+	{
+		"momota/cisco.vim",
+	}
+}

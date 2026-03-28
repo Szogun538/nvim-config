@@ -20,7 +20,7 @@ vim.keymap.set('n', '<leader>fh', function()
 	})
 end, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fs', function()
-    require('telescope.builtin').live_grep()
+	require('telescope.builtin').live_grep()
 end)
 
 vim.keymap.set("n", "<leader>nf", function()
@@ -54,6 +54,11 @@ vim.keymap.set("n", "<leader>ct", function()
 end
 )
 vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', {
-    desc = "Toggle Spectre"
+	desc = "Toggle Spectre"
 })
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle UndoTree" })
+
+vim.keymap.set("n", "<F5>", require("dap").continue, { desc = "Debug: Continue" })
+vim.keymap.set("n", "<F10>", require("dap").step_over, { desc = "Debug: Step Over" })
+vim.keymap.set("n", "<F9>", require("dap").toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
+vim.keymap.set("n", "<F17>", require("dap").terminate, { desc = "Debug: Quit" })       -- Shift+F5
