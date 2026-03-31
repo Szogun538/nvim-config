@@ -61,4 +61,30 @@ vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle UndoTr
 vim.keymap.set("n", "<F5>", require("dap").continue, { desc = "Debug: Continue" })
 vim.keymap.set("n", "<F10>", require("dap").step_over, { desc = "Debug: Step Over" })
 vim.keymap.set("n", "<F9>", require("dap").toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
-vim.keymap.set("n", "<F17>", require("dap").terminate, { desc = "Debug: Quit" })       -- Shift+F5
+vim.keymap.set("n", "<F17>", require("dap").terminate, { desc = "Debug: Quit" }) -- Shift+F5
+vim.keymap.set("n", "<F6>", function()
+  local dap = require("dap")
+  local current_file = vim.fn.expand("%:p")
+  -- swap .gd extension for .tscn
+  local scene_file = current_file:gsub("%.gd$", ".tscn")
+
+  -- check if matching scene exists, otherwise fallback to project
+  if vim.fn.filereadable(scene_file) == 0 then
+    vim.notify("No matching .tscn found, running project instead", vim.log.levels.WARN)
+    scene_file = nil
+  end
+
+  dap.run({
+    type = "godot",
+    request = "launch",
+    name = "Run Current Scene",
+    project = "${workspaceFolder}",
+    scene = scene_file,
+  })
+end)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
+vim.keymap.set("n", "bf", vim.diagnostic.open_float, { desc = "Show diagnostic" })
+vim.keymap.set("n", "<leader>fb", function()
+  vim.diagnostic.setloclist()
+end, { desc = "Show all diagnostics" })

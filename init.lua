@@ -7,3 +7,5 @@ vim.g.maplocalloader = " "
 vim.opt.clipboard = "unnamedplus"
 vim.cmd("colorscheme gruvbox")
 vim.o.background = "dark"
+vim.o.undofile = true
+vim.o.undodir = vim.fn.stdpath("data") .. "/undo"
