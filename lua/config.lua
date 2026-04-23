@@ -4,6 +4,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.numberwidth = 4
 vim.lsp.enable('lua_ls')
 vim.opt.scrolloff = 6
+vim.opt.wrap = false
 if vim.fn.has("persistent_undo") == 1 then
     local target_path = vim.fn.expand('~/.filter_undo')
 
