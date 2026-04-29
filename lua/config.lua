@@ -28,5 +28,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   end,
 })
 
+
 vim.opt.title = true
 vim.opt.wrap = false
