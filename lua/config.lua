@@ -16,3 +16,17 @@ if vim.fn.has("persistent_undo") == 1 then
     vim.opt.undodir = target_path
     vim.opt.undofile = true
 end
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  callback = function()
+    local name = vim.api.nvim_buf_get_name(0)
+    if name ~= "" then
+      -- Show just the filename, or use name for full path
+      vim.opt.titlestring = vim.fn.fnamemodify(name, ":t")
+    else
+      vim.opt.titlestring = "[No Name]"
+    end
+  end,
+})
+
+vim.opt.title = true
+vim.opt.wrap = false

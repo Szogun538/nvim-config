@@ -1,6 +1,4 @@
-local builtin = require('telescope.builtin')
-
-vim.keymap.set("n", "<leader>fe", vim.cmd.Ex)
+local builtin = require('telescope.builtin') vim.keymap.set("n", "<leader>fe", vim.cmd.Ex)
 
 -- Telescope Shortcuts
 vim.keymap.set('n', '<leader>ff', function()
@@ -9,16 +7,6 @@ vim.keymap.set('n', '<leader>ff', function()
 	})
 end, { desc = 'Telescope find files' })
 
-vim.keymap.set('n', '<leader>fh', function()
-	require('telescope').extensions.file_browser.file_browser({
-		cwd = vim.fn.expand("%:p:h"),
-		initial_mode = "insert",
-		respect_git_ignore = false,
-		hidden = true,
-		grouped = true,
-		depth = 2,
-	})
-end, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fs', function()
 	require('telescope.builtin').live_grep()
 end)
@@ -88,3 +76,14 @@ vim.keymap.set("n", "bf", vim.diagnostic.open_float, { desc = "Show diagnostic" 
 vim.keymap.set("n", "<leader>fb", function()
   vim.diagnostic.setloclist()
 end, { desc = "Show all diagnostics" })
+local function surround_word(char)
+  return function()
+    -- Use nvim-surround's ysiw motion programmatically
+    vim.cmd("normal ysiw" .. char)
+  end
+end
+vim.keymap.set("n", '<leader>q"', surround_word('"'),  { desc = "Surround word with double quotes" })
+vim.keymap.set("n", "<leader>q'", surround_word("'"),  { desc = "Surround word with single quotes" })
+vim.keymap.set("n", "<leader>q)", surround_word(")"),  { desc = "Surround word with ()" })
+vim.keymap.set("n", "<leader>q}", surround_word("}"),  { desc = "Surround word with {}" })
+vim.keymap.set("n", "<leader>q]", surround_word("]"),  { desc = "Surround word with []" })
